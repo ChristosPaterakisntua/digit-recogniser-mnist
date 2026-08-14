@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
 
-BATCH_SIZE = 5
+DEFAULT_BATCH_SIZE = 5
 
 
 def load_raw_mnist(show_details: bool = False) -> None:
@@ -27,9 +27,9 @@ def load_raw_mnist(show_details: bool = False) -> None:
         print(f"Label type: {type(label)}")  # <class 'int'>
         print(f"pixels: {image.size}")  # (28, 28)
         plt.figure(figsize=(15, 3))
-        for i in range(BATCH_SIZE):
+        for i in range(DEFAULT_BATCH_SIZE):
             image, label = train_dataset[i]
-            plt.subplot(1, BATCH_SIZE, i + 1)
+            plt.subplot(1, DEFAULT_BATCH_SIZE, i + 1)
             plt.imshow(image, cmap="gray")
             plt.title(f"Label: {label}")
             plt.axis("off")
@@ -59,16 +59,16 @@ def load_transformed_mnist(show_details: bool = False) -> None:
 
 
 def load_mnist(
-    batch_size: int = BATCH_SIZE,
+    batch_size: int = DEFAULT_BATCH_SIZE,
     train: bool = True,
 ) -> DataLoader:
     """
-    Loads a batch of images from the dataset
+    Loads the dataset in batches
 
     Args
     ------
     batch_size : int
-        the number of images loaded in this batch. Default: :data:`BATCH_SIZE`
+        the number of images loaded in this batch. Default: :data:`DEFAULT_BATCH_SIZE`
     train : bool
         indicates wether to use train or test dataset. Default: `True`
 
@@ -96,4 +96,6 @@ if __name__ == "__main__":
     images, labels = next(iter(dataset))
     print(f"Full image tensor shape: {images.shape}")  # torch.Size([5, 1, 28, 28])
     print(f"Label tensor shape: {labels.shape}")  # torch.Size([5])
-    print(images[0]) # the grayscale image's colors are normalized (mapped to 0.0 - 1.0 where 0.0 = white, 1.0 = black)
+    print(
+        images[0]
+    )  # the grayscale image's colors are normalized (mapped to 0.0 - 1.0 where 0.0 = white, 1.0 = black)

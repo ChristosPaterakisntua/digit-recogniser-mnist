@@ -1,20 +1,20 @@
 from PIL import Image, ImageOps
 import torch
-from torchvision import transforms 
+from torchvision import transforms
 
 
-def normalize_tensor(tensor : torch.Tensor) -> torch.Tensor:
+def normalize_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
     All values are normalized to 0.0 - 1.0 using z score method
 
     Args
     ------
     tensor : torch.Tensor
-        the input tensor 
-    
+        the input tensor
+
     Returns
     ------
-    torch.Tensor 
+    torch.Tensor
         normalized tensor
 
     Note
@@ -29,10 +29,10 @@ def normalize_tensor(tensor : torch.Tensor) -> torch.Tensor:
     return tensor.to(dtype=torch.float32)
 
 
-def load_raw_image(path : str) -> torch.Tensor:
+def load_raw_image(path: str) -> torch.Tensor:
     """
     Loads a raw image and returns a Tensor of shape [1,28,28]
-    ([channels, height, width]). The image is converted to grayscale and 
+    ([channels, height, width]). The image is converted to grayscale and
     resized to 28x28 px. The purpose of this function is to produce tensors
     that match mnist dataset tensors.
     """
@@ -40,7 +40,7 @@ def load_raw_image(path : str) -> torch.Tensor:
     with Image.open(path) as img:
         img = ImageOps.grayscale(img)
         img = ImageOps.autocontrast(img)
-        img = img.resize(size=(28,28))
+        img = img.resize(size=(28, 28))
         # remove this
         img.show()
 

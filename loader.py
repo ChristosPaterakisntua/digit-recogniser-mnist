@@ -3,32 +3,6 @@ import torch
 from torchvision import transforms
 
 
-def normalize_tensor(tensor: torch.Tensor) -> torch.Tensor:
-    """
-    All values are normalized to 0.0 - 1.0 using z score method
-
-    Args
-    ------
-    tensor : torch.Tensor
-        the input tensor
-
-    Returns
-    ------
-    torch.Tensor
-        normalized tensor
-
-    Note
-    ------
-    `y = (x - mean) / std` where:
-    - x: input tensor
-    - y: output tensor
-    """
-    tensor = tensor.to(dtype=torch.float32)
-    mean, std = torch.mean(tensor), torch.std(tensor)
-    tensor = (tensor - mean) / std
-    return tensor.to(dtype=torch.float32)
-
-
 def load_raw_image(path: str) -> torch.Tensor:
     """
     Loads a raw image and returns a Tensor of shape [1,28,28]

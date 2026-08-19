@@ -13,16 +13,6 @@ LEARNING_RATE = 0.001
 WEIGHT_DECAY = 0.01
 
 
-def select_device() -> torch.device:
-    if torch.cuda.is_available():
-        return torch.device("cuda")
-    if torch.mps.is_available():
-        return torch.device("mps")
-    if torch.xpu.is_available():
-        return torch.device("xpu")
-    return torch.device("cpu")
-
-
 def loss_plotter(loss_list: list[float]):
     plt.plot(range(1, len(loss_list) + 1), loss_list)
     plt.xlabel("Epoch")

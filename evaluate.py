@@ -7,7 +7,9 @@ from dataset import load_mnist
 from model import CNNDigitRecogniserModel, MLPDigitRecogniserModel
 
 
-def load_trained_model(path: str, device: torch.device) -> CNNDigitRecogniserModel | MLPDigitRecogniserModel:
+def load_trained_model(
+    path: str, device: torch.device
+) -> CNNDigitRecogniserModel | MLPDigitRecogniserModel:
     return torch.load(path.strip(), map_location=device)
 
 
@@ -49,4 +51,3 @@ def evaluate(
             total_samples += labels.size(0)
 
     return correct_predictions / total_samples
-

@@ -1,5 +1,7 @@
 from model import MLPDigitRecogniserModel, CNNDigitRecogniserModel
 from dataset import load_mnist
+from predict import predict
+from utils import select_device
 
 from torch import nn
 
@@ -9,6 +11,8 @@ def main():
     model2 = CNNDigitRecogniserModel()
 
     dataloader = load_mnist()
+
+    device = select_device()
 
     batch, labels = next(iter(dataloader))
 
@@ -39,16 +43,21 @@ def main():
     state_dict = model1.state_dict()
     print("Keys, types and shapes of value:")
     for key in state_dict:
-        print(f"{key} | {type(state_dict[key])} | {state_dict[key].shape}") 
+        print(f"{key} | {type(state_dict[key])} | {state_dict[key].shape}")
     print()
 
     print("State dict 2:")
     state_dict = model2.state_dict()
     print("Keys, types and shapes of value:")
     for key in state_dict:
-        print(f"{key} | {type(state_dict[key])} | {state_dict[key].shape}") 
+        print(f"{key} | {type(state_dict[key])} | {state_dict[key].shape}")
     print()
-    
+
+    print("Predictions: ")
+    print(f"Model 1 pred: {predict(model=model1, image_tensor=batch, device=device)}")
+    print(f"Model 2 pred: {predict(model=model2, image_tensor=batch, device=device)}")
+    print(f"Correct answer: {labels}")
+
 
 
 if __name__ == "__main__":

@@ -32,17 +32,37 @@ def loss_plotter(loss_list: list[float]):
 
 
 def train(
-        model: CNNDigitRecogniserModel | MLPDigitRecogniserModel,
-        data_loader: DataLoader,
-        device: torch.device,
-        epochs: int = EPOCHS,
-        learning_rate: float = LEARNING_RATE,
-        weight_decay: float = WEIGHT_DECAY,
-        plot_loss: bool = True,
-        model_id: str = "",
+    model: CNNDigitRecogniserModel | MLPDigitRecogniserModel,
+    data_loader: DataLoader,
+    device: torch.device,
+    epochs: int = EPOCHS,
+    learning_rate: float = LEARNING_RATE,
+    weight_decay: float = WEIGHT_DECAY,
+    plot_loss: bool = True,
+    model_id: str = "",
 ) -> None:
     """
-    
+    Trains given model and saves it as .pt file
+
+    Args
+    -------
+    model : :class:`CNNDigitRecogniserModel` | :class:`MLPDigitRecogniserModel`
+
+    data_loader : DataLoader
+
+    device : torch.device
+
+    epochs : int = :data:`EPOCHS`
+
+    learning_rate : float = :data:`LEARNING_RATE`
+
+    weight_decay : float = :data:`WEIGHT_DECAY`
+
+    plot_loss : bool = `True`
+        If true it shows a plot with train loss vs epoch number
+
+    model_id : str = `""`,
+        The model is saved as `model_<model_id>`
     """
     loss_function = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(
@@ -52,7 +72,7 @@ def train(
     )
     train_loss_list = []
     for epoch in range(epochs):
-        print(f"Epoch {epoch+1}/{epochs}")
+        print(f"Epoch {epoch + 1}/{epochs}")
         train_loss = 0
         model = model.to(device)
         model.train()

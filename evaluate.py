@@ -10,7 +10,7 @@ from model import CNNDigitRecogniserModel, MLPDigitRecogniserModel
 def load_trained_model(
     path: str, device: torch.device
 ) -> CNNDigitRecogniserModel | MLPDigitRecogniserModel:
-    return torch.load(path.strip(), map_location=device)
+    return torch.load(path.strip().strip('"'), map_location=device)
 
 
 def load_test_dataset() -> DataLoader:

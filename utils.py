@@ -11,6 +11,15 @@ def select_device() -> torch.device:
     return torch.device("cpu")
 
 
+def ask_yes_or_no(prompt: str) -> bool:
+    answers = ["y", "n"]
+    prompt = prompt.strip() + " (y/n): "
+    ans = ""
+    while ans not in answers:
+        ans = input(prompt).lower().strip()
+    return ans == "y"
+
+
 def normalize_tensor(tensor: torch.Tensor) -> torch.Tensor:
     """
     All values are normalized to 0.0 - 1.0 using z score method

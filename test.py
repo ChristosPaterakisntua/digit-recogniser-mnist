@@ -59,6 +59,5 @@ def main():
     print(f"Correct answer: {labels}")
 
 
-
 if __name__ == "__main__":
     main()

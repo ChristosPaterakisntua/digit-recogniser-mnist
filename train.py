@@ -210,7 +210,7 @@ def train(
                 optimizer=optimizer,
                 epoch=epoch,
                 best_loss=best_loss,
-                epochs_without_improvements=epochs_without_improvement,
+                epochs_without_improvement=epochs_without_improvement,
                 train_loss_list=train_loss_list,
                 path=checkpoint_path,
             )

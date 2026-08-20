@@ -223,6 +223,6 @@ def train(
         loss_plotter(loss_list=train_loss_list)
 
     path = f"saved_models/model_{model_id}.pt"
-    Path(path).parent.mkdir(parents=True, exist_ok=False)
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
     torch.save(model.state_dict(), path)
     print(f"Final model saved: {path}")

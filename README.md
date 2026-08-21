@@ -83,7 +83,7 @@ The training configuration is defined in `train.py`, including epochs, learning 
 | `main.ipynb` | Notebook workflow |
 | `test.py` | Prints useful data for understanding the process |
 | `utils.py` | General helful functions |
-| `main.html` | Notebook output |
+| `output.pdf` | Notebook output |
 | `.gitignore` | Specifies files that shouldn't be included |
 | `LICENSE` | license |
 | `requirements.txt` | Versions of python libraries |
